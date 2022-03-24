@@ -1,0 +1,21 @@
+{
+  "name": "ts-moleculer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ioredis": "^4.28.5",
+    "jsonwebtoken": "^8.5.1",
+    "moleculer": "^0.14.19",
+    "moleculer-web": "^0.10.4"
+  },
+  "devDependencies": {
+    "moleculer-repl": "^0.7.0"
+  }
+}
