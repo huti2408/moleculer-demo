@@ -1,7 +1,26 @@
 const { ServiceBroker, Context } = require("moleculer");
 const ApiGateway = require("moleculer-web");
+// const middleware = require("./checkLength.middleware");
 const jwt = require("jsonwebtoken");
 
+const middleware = {
+  name: "CheckLength",
+  localAction(next, action) {
+    return function (ctx) {
+      console.log(ctx);
+      console.log(action);
+
+      return next(ctx)
+        .then((res) => {
+          console.log(ctx.action);
+          return res;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  },
+};
 const broker = new ServiceBroker({
   // middlewares: [middleware],
   // transporter: 'NATS',
@@ -22,6 +41,7 @@ const broker = new ServiceBroker({
   },
 });
 
+//**.service.js
 broker.createService({
   name: "test",
 
@@ -39,10 +59,6 @@ broker.createService({
   },
   actions: {
     signIn: {
-      rest: {
-        path: "/sign-in",
-        method: "POST",
-      },
       cache: true,
       params: {
         username: "string",
